@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<meta name="viewport" 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+      <meta name="HandheldFriendly" content="true" />
+	<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
+	<script src="app.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		var size = `
+	<rect x="0" y="83.3" class="st0" width="11.1" height="5.6"/>
+	<rect x="13.9" y="69.4" class="st0" width="8.3" height="16.7"/>
+	<rect x="22.2" y="52.8" class="st0" width="8.3" height="11.1"/>
+	<rect x="13.9" y="58.3" class="st0" width="5.6" height="8.3"/>
+	<rect x="19.4" y="25" class="st0" width="5.6" height="8.3"/>
+	<rect x="69.4" y="0" class="st0" width="5.6" height="5.6"/>
+	<rect x="86.1" y="27.8" class="st0" width="5.6" height="5.6"/>
+	<rect x="94.4" y="2.8" class="st0" width="5.6" height="8.3"/>
+	<rect x="102.8" y="2.8" class="st0" width="8.3" height="5.6"/>
+	<rect x="147.2" y="22.2" class="st0" width="8.3" height="5.6"/>
+	<rect x="105.6" y="33.3" class="st0" width="8.3" height="5.6"/>
+	<rect x="16.7" y="13.9" class="st0" width="8.3" height="8.3"/>
+	<rect x="11.1" y="25" class="st0" width="5.6" height="11.1"/>
+	<rect x="13.9" y="0" class="st0" width="5.6" height="11.1"/>
+	<rect x="72.2" y="19.4" class="st0" width="8.3" height="13.9"/>
+	<rect x="91.7" y="16.7" class="st0" width="5.6" height="13.9"/>
+	<rect x="2.8" y="2.8" class="st0" width="8.3" height="8.3"/>
+	<rect x="77.8" y="59.7" class="st0" width="11.1" height="5.6"/>
+	<rect x="83.3" y="47.2" class="st0" width="8.3" height="11.1"/>
+	<rect x="91.7" y="72.2" class="st0" width="13.9" height="8.3"/>
+	<rect x="106.9" y="77.8" class="st0" width="8.3" height="5.6"/>
+	<rect x="141.7" y="73.6" class="st0" width="16.7" height="11.1"/>
+	<rect x="158.4" y="77.8" class="st0" width="13.9" height="8.3"/>
+	<rect x="152.8" y="59.7" class="st0" width="8.3" height="11.1"/>
+	<rect x="141.1" y="62" class="st0" width="8.3" height="9.8"/>
+	<rect x="97.2" y="83.3" class="st0" width="13.9" height="8.3"/>
+	<rect x="102.8" y="91.7" class="st0" width="11.1" height="8.3"/>
+	<rect x="66.7" y="47.2" class="st0" width="13.9" height="8.3"/>
+	<rect x="80.6" y="36.1" class="st0" width="16.7" height="8.3"/>
+	<rect x="83.2" y="82" class="st0" width="11.1" height="5.6"/>
+	<rect x="69.4" y="88.9" class="st0" width="13.9" height="11.1"/>
+	<rect x="73.6" y="66.7" class="st0" width="13.9" height="11.1"/>
+	<rect x="68" y="81.9" class="st0" width="5.6" height="5.6"/>
+	<rect x="66.7" y="75" class="st0" width="5.6" height="5.6"/>`
+				for (var i = size.split('x="').length - 1; i >= 1; i--) {
+					$('body').append('<div class="box box_'+i+'"></div>')
+					console.log(parseInt(size.split('x="')[i].split('"')[0]))
+					$('.box_'+i).css({'left':parseInt(size.split('x="')[i].split('"')[0])*8+'px'})
+					$('.box_'+i).css({'top':parseInt(size.split('y="')[i].split('"')[0])*8+'px'})
+					$('.box_'+i).css({'width':parseInt(size.split('width="')[i].split('"')[0])*8+'px'})
+					$('.box_'+i).css({'height':parseInt(size.split('height="')[i].split('"')[0])*8+'px'})
+				}
+				var counter = 0
+				blink()
+				function blink(){
+					counter++
+					$('.box').show()
+					$('.box_'+counter).hide()
+					setTimeout(function(){
+						blink()
+					},100)
+				}
+		})
+	</script>
+	<style type="text/css">
+		body, html{
+			width: 100vw;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: black;
+			overflow: hidden;
+		}
+		.box{
+			position: absolute;
+			background-image: url(dance.gif);
+			background-size: 200%;
+			background-position: center;
+			
+			/*background-color: white*/
+		}
+	</style>
+</head>
+<body>
+</body>
+</html>
