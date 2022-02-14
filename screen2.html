@@ -13,64 +13,105 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 		var size = `
-	<rect x="0" y="83.3" class="st0" width="11.1" height="5.6"/>
-	<rect x="13.9" y="69.4" class="st0" width="8.3" height="16.7"/>
-	<rect x="22.2" y="52.8" class="st0" width="8.3" height="11.1"/>
-	<rect x="13.9" y="58.3" class="st0" width="5.6" height="8.3"/>
-	<rect x="19.4" y="25" class="st0" width="5.6" height="8.3"/>
-	<rect x="69.4" y="0" class="st0" width="5.6" height="5.6"/>
-	<rect x="86.1" y="27.8" class="st0" width="5.6" height="5.6"/>
-	<rect x="94.4" y="2.8" class="st0" width="5.6" height="8.3"/>
-	<rect x="102.8" y="2.8" class="st0" width="8.3" height="5.6"/>
-	<rect x="147.2" y="22.2" class="st0" width="8.3" height="5.6"/>
-	<rect x="105.6" y="33.3" class="st0" width="8.3" height="5.6"/>
-	<rect x="16.7" y="13.9" class="st0" width="8.3" height="8.3"/>
-	<rect x="11.1" y="25" class="st0" width="5.6" height="11.1"/>
-	<rect x="13.9" y="0" class="st0" width="5.6" height="11.1"/>
-	<rect x="72.2" y="19.4" class="st0" width="8.3" height="13.9"/>
-	<rect x="91.7" y="16.7" class="st0" width="5.6" height="13.9"/>
-	<rect x="2.8" y="2.8" class="st0" width="8.3" height="8.3"/>
-	<rect x="77.8" y="59.7" class="st0" width="11.1" height="5.6"/>
-	<rect x="83.3" y="47.2" class="st0" width="8.3" height="11.1"/>
-	<rect x="91.7" y="72.2" class="st0" width="13.9" height="8.3"/>
-	<rect x="106.9" y="77.8" class="st0" width="8.3" height="5.6"/>
-	<rect x="141.7" y="73.6" class="st0" width="16.7" height="11.1"/>
-	<rect x="158.4" y="77.8" class="st0" width="13.9" height="8.3"/>
-	<rect x="152.8" y="59.7" class="st0" width="8.3" height="11.1"/>
-	<rect x="141.1" y="62" class="st0" width="8.3" height="9.8"/>
-	<rect x="97.2" y="83.3" class="st0" width="13.9" height="8.3"/>
-	<rect x="102.8" y="91.7" class="st0" width="11.1" height="8.3"/>
-	<rect x="66.7" y="47.2" class="st0" width="13.9" height="8.3"/>
-	<rect x="80.6" y="36.1" class="st0" width="16.7" height="8.3"/>
-	<rect x="83.2" y="82" class="st0" width="11.1" height="5.6"/>
-	<rect x="69.4" y="88.9" class="st0" width="13.9" height="11.1"/>
-	<rect x="73.6" y="66.7" class="st0" width="13.9" height="11.1"/>
-	<rect x="68" y="81.9" class="st0" width="5.6" height="5.6"/>
-	<rect x="66.7" y="75" class="st0" width="5.6" height="5.6"/>`
-				for (var i = size.split('x="').length - 1; i >= 1; i--) {
-					$('body').append('<div class="box box_'+i+'"></div>')
-					console.log(parseInt(size.split('x="')[i].split('"')[0]))
-					$('.box_'+i).css({'left':parseInt(size.split('x="')[i].split('"')[0])*8+'px'})
-					$('.box_'+i).css({'top':parseInt(size.split('y="')[i].split('"')[0])*8+'px'})
-					$('.box_'+i).css({'width':parseInt(size.split('width="')[i].split('"')[0])*8+'px'})
-					$('.box_'+i).css({'height':parseInt(size.split('height="')[i].split('"')[0])*8+'px'})
+<rect x="26.4" y="8.9" class="st0" width="15.4" height="12.3"/>
+<rect x="9.3" y="21.1" class="st0" width="15.4" height="12.3"/>
+<rect x="74.8" y="18.1" class="st0" width="15.4" height="12.3"/>
+<rect x="74.8" y="78" class="st0" width="15.4" height="12.3"/>
+<rect x="9.3" y="48.8" class="st0" width="15.4" height="12.3"/>
+<rect x="7.8" y="76.4" class="st0" width="18.4" height="13.8"/>
+<rect x="9.3" y="35" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 58.1097 24.1161)" class="st0" width="15.4" height="12.3"/>
+<rect x="74.8" y="31.9" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 120.5509 -44.4684)" class="st0" width="15.4" height="12.3"/>
+<rect x="9.3" y="62.6" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 85.7547 51.761)" class="st0" width="15.4" height="12.3"/>
+<rect x="26.4" y="21.1" class="st0" width="15.4" height="12.3"/>
+<rect x="26.4" y="48.8" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 89.0131 20.8576)" class="st0" width="15.4" height="12.3"/>
+<rect x="24.9" y="33.4" class="st0" width="18.4" height="13.8"/>
+<rect x="24.9" y="62.6" class="st0" width="18.4" height="13.8"/>
+<rect x="73.3" y="45.7" class="st0" width="18.4" height="13.8"/>
+<rect x="73.3" y="61.8" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 151.2675 -13.7518)" class="st0" width="18.4" height="13.8"/>
+<rect x="24.9" y="76.4" class="st0" width="18.4" height="`
+					var adjustment = 4
+				for (var i = size.split('<rect').length - 1; i >= 1; i--) {
+					$('body').append('<div class="box box_'+i+' boxclass_'+(i%12)+'"></div>')
+					$('.box_'+i).css({'left':parseInt(size.split('x="')[i].split('"')[0])*adjustment+'px'})
+					$('.box_'+i).css({'top':parseInt(size.split('y="')[i].split('"')[0])*adjustment+'px'})
+					      if(size.split('<rect')[i].split('transform="matrix(0.7071 0.7071 -0.7071 0.7071').length>1){
+						$('.box_'+i).css({'transform':'rotate(45deg)'})
+					}else if(size.split('<rect')[i].split('transform="matrix(-0.7071 0.7071 -0.7071 -0.7071').length>1){
+						$('.box_'+i).css({'transform':'rotate(-45deg)'})
+					}else if(size.split('<rect')[i].split('transform="matrix(-0.7071 -0.7071 0.7071 -0.7071').length>1){
+						$('.box_'+i).css({'transform':'rotate(45deg)'})
+					}else if(size.split('<rect')[i].split('transform="matrix(0.7071 0.7071 0.7071 -0.7071').length>1){
+						$('.box_'+i).css({'transform':'rotate(45deg)'})
+					}else if(size.split('<rect')[i].split('transform="matrix(0.7071 -0.7071 0.7071 0.7071').length>1){
+						$('.box_'+i).css({'transform':'rotate(-45deg)'})
+					}else if(size.split('<rect')[i].split('transform="matrix(-8.927099e').length>1){
+						$('.box_'+i).css({'transform':'rotate(90deg)'})
+					}else if(size.split('<rect')[i].split('transform="matrix(6.123234e-17').length>1){
+						$('.box_'+i).css({'transform':'rotate(90deg)'})
+					}else if(size.split('<rect')[i].split('transform="matrix(').length==1){
+						$('.box_'+i).css({'transform':'rotate(0deg)'})
+					}else{
+						$('.box_'+i).css({'transform':'rotate(90deg)'})
+					}
+					var wid = parseInt(size.split('width="')[i].split('"')[0])*adjustment
+					var hei = parseInt(size.split('height="')[i].split('"')[0])*adjustment
+					$('.box_'+i).css({'width': wid+'px'})
+					$('.box_'+i).css({'height': hei+'px'})
+					if( (hei<50&&wid>50)){
+						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
+						$('.box_'+i).append('<div class="tabs mobile_tabs_'+(Math.floor(Math.random()*3)+3)+'" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
+						//ismobile && wide
+					}
+					if((hei>50&&wid<50)){
+						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+						$('.box_'+i).append('<div class="tabs mobile_tabs_'+(Math.floor(Math.random()*3)+3)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+						//ismobile && long
+					}else{
+						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+						$('.box_'+i).append('<div class="tabs desk_tabs_'+(Math.floor(Math.random()*2)+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+					}
+					var tab_hei_unit = 2.5
+
+					if(i==1){
+						$('.desk_tabs_1').each(function(){
+							$(this).append('<div class="tab tab_1 tab_1_1"></div><div class="tab tab_1 tab_1_2"></div>')
+						})
+						$('.desk_tabs_2').each(function(){
+							$(this).append('<div class="tab tab_2 tab_2_1"></div><div class="tab tab_2 tab_2_2"></div>')
+						})
+						$('.mobile_tabs_3').each(function(){
+							$(this).append('<div class="tab tab_3 tab_3_1"></div><div class="tab tab_3 tab_3_2"></div><div class="tab tab_3 tab_3_3"></div><div class="tab tab_3 tab_3_4"></div>')
+						})
+						$('.mobile_tabs_4').each(function(){
+							$(this).append('<div class="tab tab_4 tab_4_1"></div><div class="tab tab_4 tab_4_2"></div><div class="tab tab_4_b tab_4_3"></div><div class="tab tab_4_b tab_4_4"></div>')
+						})
+						$('.mobile_tabs_5').each(function(){
+							$(this).append('<div class="tab tab_5 tab_5_1"></div><div class="tab tab_5 tab_5_2"></div>')
+						})
+						$('.tab_1').css({'height':tab_hei_unit*2+'px'})
+						$('.tab_2').css({'height':tab_hei_unit+'px'})
+						$('.tab_3').css({'height':tab_hei_unit*1.5+'px'})
+						$('.tab_4').css({'height':tab_hei_unit+'px'})
+						$('.tab_4_b').css({'height':tab_hei_unit*0.25+'px'})
+						$('.tab_5').css({'height':tab_hei_unit*0.75+'px'})
+					}
 				}
 				var counter = 0
-				blink()
-				function blink(){
+				// animate()
+				function animate(){
 					counter++
-					$('.box').show()
-					$('.box_'+counter).hide()
-					setTimeout(function(){
-						blink()
-					},100)
+    				window.requestAnimationFrame(animate);
 				}
 		})
 	</script>
 	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0
+		}
 		body, html{
-			width: 100vw;
-			height: 100%;
+			width: 200vw;
+			height: 200vh;
 			position: absolute;
 			left: 0;
 			top: 0;
@@ -79,12 +120,95 @@
 		}
 		.box{
 			position: absolute;
-			background-image: url(dance.gif);
-			background-size: 200%;
-			background-position: center;
-			
-			/*background-color: white*/
 		}
+		.bomb{
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-size: cover;
+			background-position: center;
+		}
+		.tabs{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		.boxclass_0{
+    		background: linear-gradient( 90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 154, 0, 1) 10%, rgba(208, 222, 33, 1) 20%, rgba(79, 220, 74, 1) 30%, rgba(63, 218, 216, 1) 40%, rgba(47, 201, 226, 1) 50%, rgba(255, 0, 0, 1) 100%);
+		}
+		.boxclass_1,
+.boxclass_2,
+.boxclass_3{
+			background:linear-gradient(#85ffea, #bbf9ff);
+		}
+		.boxclass_4,
+		.boxclass_5,
+		.boxclass_6,
+		.boxclass_7{
+			background:linear-gradient(#00e5ff, #e7e7e7) ;
+		}
+		.boxclass_8,
+		.boxclass_9{
+			background:linear-gradient(#ffade6, #ffeb3b);
+		}
+		.boxclass_8{
+    filter: blur(1.5vh);}
+		.boxclass_10,
+		.boxclass_11{
+			background:linear-gradient(#ffff8a, #fffce0);
+		}
+.boxclass_2{
+    filter: blur(1vh);}
+		.tab{
+			position: absolute;
+			width: 100%;
+			background-size: auto 100%;
+			background-repeat: no-repeat;
+			z-index: 199
+		}
+		.tab_1_1,.tab_2_1,.tab_3_1,.tab_4_1,.tab_5_1{
+			left: 0;
+			top: 0;
+			background-position: left;
+		}
+		.tab_1_2,.tab_2_2,.tab_3_2,.tab_4_2,.tab_5_2{
+			right: 0;
+			top: 0;
+			background-position: right;
+		}
+		.tab_3_3,.tab_4_3{
+			left: 0;
+			bottom: 0;
+			background-position: left;
+		}
+		.tab_3_4,.tab_4_4{
+			right: 0;
+			bottom: 0;
+			background-position: right;
+		}
+		.tab_1_1{background-image: url(tabs/tab1_1.png)}
+		.tab_2_1{background-image: url(tabs/tab2_1.png)}
+		.tab_3_1{background-image: url(tabs/tab3_1.png)}
+		.tab_4_1{background-image: url(tabs/tab4_1.png)}
+		.tab_5_1{background-image: url(tabs/tab5_1.png)}
+		.tab_1_2{background-image: url(tabs/tab1_2.png)}
+		.tab_2_2{background-image: url(tabs/tab2_2.png)}
+		.tab_3_2{background-image: url(tabs/tab3_2.png)}
+		.tab_4_2{background-image: url(tabs/tab4_2.png)}
+		.tab_5_2{background-image: url(tabs/tab5_2.png)}
+		.tab_3_3{background-image: url(tabs/tab3_3.png)}
+		.tab_4_3{background-image: url(tabs/tab4_3.png)}
+		.tab_3_4{background-image: url(tabs/tab3_4.png)}
+		.tab_4_4{background-image: url(tabs/tab4_4.png)}
+		 .bomb_1{background-image:url(gifs/bomb_1.gif)}
+		 .bomb_2{background-image:url(gifs/bomb_2.gif)}
+		 .bomb_3{background-image:url(gifs/bomb_3.gif)}
+		 .bomb_4{background-image:url(gifs/bomb_4.gif)}
+		 .bomb_5{background-image:url(gifs/bomb_5.gif)}
+		 .bomb_6{background-image:url(gifs/bomb_6.gif)}
+		 .bomb_7{background-image:url(gifs/bomb_7.gif)}
+		 .bomb_8{background-image:url(gifs/bomb_8.gif)}
+		 .bomb_9{background-image:url(gifs/bomb_9.gif)}
 	</style>
 </head>
 <body>
