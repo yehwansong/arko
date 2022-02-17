@@ -179,7 +179,7 @@
 						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 						$('.box_'+i).append('<div class="tabs desk_tabs_'+(Math.floor(Math.random()*2)+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 					}
-					var tab_hei_unit = 2.5
+					var tab_hei_unit = 3.5
 
 					if(i==1){
 						$('.desk_tabs_1').each(function(){
@@ -205,6 +205,14 @@
 						$('.tab_5').css({'height':tab_hei_unit*0.75+'px'})
 					}
 				}
+				reloading()
+				function reloading(){
+					setTimeout(function(){
+				    window.location.reload();
+					},5000)
+
+				}
+
 				var counter = 0
 				// animate()
 				function animate(){
@@ -340,6 +348,9 @@
 		     top: 200px;}
 		     .box_1{filter: saturate(0);
 		     filter: blur(1.5vh);}
+		     .box_101,.box_93{
+		     	transform: rotate(0deg) !important;
+		     }
 	</style>
 </head>
 <body>
