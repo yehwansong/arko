@@ -168,16 +168,16 @@
 					$('.box_'+i).css({'height': hei+'px'})
 					if( (hei<50&&wid>50)){
 						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
-						$('.box_'+i).append('<div class="tabs mobile_tabs_'+(Math.floor(Math.random()*3)+3)+'" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
+						$('.box_'+i).append('<div class="tabs mobile_tabs_1" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
 						//ismobile && wide
 					}
 					if((hei>50&&wid<50)){
 						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
-						$('.box_'+i).append('<div class="tabs mobile_tabs_'+(Math.floor(Math.random()*3)+3)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+						$('.box_'+i).append('<div class="tabs mobile_tabs_1" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 						//ismobile && long
 					}else{
 						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
-						$('.box_'+i).append('<div class="tabs desk_tabs_'+(Math.floor(Math.random()*2)+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+						$('.box_'+i).append('<div class="tabs desk_tabs_1" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 					}
 					$('.box_'+i).css({'height': hei*1.2+'px'})
 					var tab_hei_unit = 3.5
