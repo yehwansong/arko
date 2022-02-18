@@ -139,7 +139,7 @@
 					var frame_rate = [ 4 , 24 , 6 , 6 , 12 , 12 , 30 ]		
 					var frame_rate_sec = [250,40,165,85,30]		
 					var adjustment = 4
-				for (var i = 0; i < size.split('<rect').length; i++) {
+				for (var i = size.split('<rect').length-1; i >=0; i--) {
 					$('body').append('<div class="box box_'+i+' boxclass_'+(i%12)+'"></div>')
 					$('.box_'+i).css({'left':parseInt(size.split('x="')[i].split('"')[0])*adjustment+'px'})
 					$('.box_'+i).css({'top':parseInt(size.split('y="')[i].split('"')[0])*adjustment+'px'})
@@ -213,7 +213,7 @@
 					}
 				}
 				console.log('1')
-				reloading()
+				// reloading()
 				function reloading(){
 					setTimeout(function(){
 				    window.location.reload();
