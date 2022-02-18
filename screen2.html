@@ -167,29 +167,33 @@
 					$('.box_'+i).css({'width': wid+'px'})
 					$('.box_'+i).css({'height': hei+'px'})
 					if( (hei<50&&wid>50)){
-						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
-						$('.box_'+i).append('<div class="tabs mobile_tabs_1" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
+						$('.box_'+i).append('<div class="grad" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg) translateY(-100%); transform-origin:left top"></div>')
+						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg) translateY(-100%); transform-origin:left top"></div>')
+						$('.box_'+i).append('<div class="tabs mobile_tabs_3" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg) translateY(-100%); transform-origin:left top"></div>')
 						//ismobile && wide
 					}else if((hei>50&&wid<50)){
+						$('.box_'+i).append('<div class="grad" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
-						$('.box_'+i).append('<div class="tabs mobile_tabs_1" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+						$('.box_'+i).append('<div class="tabs mobile_tabs_3" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 						//ismobile && long
 					}else{
+						$('.box_'+i).append('<div class="grad" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 						$('.box_'+i).append('<div class="tabs desk_tabs_1" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 					}
+					$('.box_'+i).append('<div class="textbox">'+i+'</div>')
 					// $('.box_'+i).css({'height': hei*1.2+'px'})
 					var tab_hei_unit = 3.5
 
 					if(i==1){
 						$('.desk_tabs_1').each(function(){
-							$(this).append('<div class="tab tab_1 tab_1_1"></div><div class="tab tab_1 tab_1_2"></div>')
+							$(this).append('<div class="tab tab_1_blur tab_blur"></div><div class="tab tab_1 tab_1_1"></div><div class="tab tab_1 tab_1_2"></div>')
 						})
 						$('.desk_tabs_2').each(function(){
 							$(this).append('<div class="tab tab_2 tab_2_1"></div><div class="tab tab_2 tab_2_2"></div>')
 						})
 						$('.mobile_tabs_3').each(function(){
-							$(this).append('<div class="tab tab_3 tab_3_1"></div><div class="tab tab_3 tab_3_2"></div><div class="tab tab_3 tab_3_3"></div><div class="tab tab_3 tab_3_4"></div>')
+							$(this).append('<div class="tab tab_3_blur tab_blur"></div><div class="tab tab_3 tab_3_1"></div><div class="tab tab_3 tab_3_2"></div><div class="tab tab_3 tab_3_3"></div><div class="tab tab_3 tab_3_4"></div>')
 						})
 						$('.mobile_tabs_4').each(function(){
 							$(this).append('<div class="tab tab_4 tab_4_1"></div><div class="tab tab_4 tab_4_2"></div><div class="tab tab_4_b tab_4_3"></div><div class="tab tab_4_b tab_4_4"></div>')
@@ -198,15 +202,18 @@
 							$(this).append('<div class="tab tab_5 tab_5_1"></div><div class="tab tab_5 tab_5_2"></div>')
 						})
 						$('.tab_1').css({'height':tab_hei_unit*2+'px'})
+						$('.tab_1_blur').css({'height':tab_hei_unit*2+'px'})
+						$('.tab_1').css({'height':tab_hei_unit*2+'px'})
 						$('.tab_2').css({'height':tab_hei_unit+'px'})
 						$('.tab_3').css({'height':tab_hei_unit*1.5+'px'})
+						$('.tab_3_blur').css({'height':tab_hei_unit*1.5+'px'})
 						$('.tab_4').css({'height':tab_hei_unit+'px'})
 						$('.tab_4_b').css({'height':tab_hei_unit*0.25+'px'})
 						$('.tab_5').css({'height':tab_hei_unit*0.75+'px'})
 					}
 				}
 				console.log('1')
-				reloading()
+				// reloading()
 				function reloading(){
 					setTimeout(function(){
 				    window.location.reload();
@@ -239,6 +246,11 @@
 			background-color: black;
 			overflow: hidden;
 		}
+		.tab_blur{
+			width: 100%;
+			background-color: #dfdeda;
+			filter: blur(0.5vh);
+		}
 		.box{
 			position: absolute;
 		}
@@ -254,34 +266,54 @@
 			left: 0;
 			top: 0;
 		}
-		.boxclass_0{
+		.textbox{
+			position: absolute;
+			color: red;
+			left: 0;
+			top: 0;
+			z-index: 1000
+		}
+		.boxclass_0 .grad,.boxclass_0{
     		background: linear-gradient( 90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 154, 0, 1) 10%, rgba(208, 222, 33, 1) 20%, rgba(79, 220, 74, 1) 30%, rgba(63, 218, 216, 1) 40%, rgba(47, 201, 226, 1) 50%, rgba(255, 0, 0, 1) 100%);
 		}
-		.boxclass_1,
+		.boxclass_1 .grad,
+.boxclass_2 .grad,
+.boxclass_3 .grad,
+.boxclass_1,
 .boxclass_2,
 .boxclass_3{
 			background:linear-gradient(#85ffea, #bbf9ff);
 		}
+		.boxclass_4 .grad,
+		.boxclass_5 .grad,
+		.boxclass_6 .grad,
+		.boxclass_7 .grad,
 		.boxclass_4,
-		.boxclass_5,
-		.boxclass_6,
-		.boxclass_7{
+.boxclass_5,
+.boxclass_6,
+.boxclass_7{
 			background:linear-gradient(#00e5ff, #e7e7e7) ;
 		}
+		.boxclass_8 .grad,
+		.boxclass_9 .grad,
 		.boxclass_8,
 		.boxclass_9{
 			background:linear-gradient(#ffade6, #ffeb3b);
 		}
-		.boxclass_8{
-    filter: blur(1.5vh);}
+		.boxclass_10 .grad,
+		.boxclass_11 .grad,
 		.boxclass_10,
-		.boxclass_11{
+		.boxclass_11 {
 			background:linear-gradient(#ffff8a, #fffce0);
 		}
+		.grad{
+    /*filter: blur(1vh);*/
+}
 .boxclass_2{
-    filter: blur(1vh);}
+    filter: blur(1vh);
+}
 		.tab{
-			filter: invert(1);
+			/*filter: invert(1);*/
 			position: absolute;
 			width: 100%;
 			background-size: auto 100%;
@@ -355,6 +387,7 @@
 		     }
 	</style>
 </head>
+
 <body>
 	<div class="overlay_light overlay_light_1"></div>
 	<div class="overlay_light overlay_light_2"></div>
