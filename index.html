@@ -102,6 +102,13 @@
 					counter++
     				window.requestAnimationFrame(animate);
 				}
+				reloading()
+				function reloading(){
+					setTimeout(function(){
+				    window.location.reload();
+					},3000)
+
+				}
 		})
 	</script>
 	<style type="text/css">
@@ -110,8 +117,9 @@
 			padding: 0
 		}
 		body{
-    transform: rotate(90deg) translateY(-100vh);
-    transform-origin: left top;}
+    transform: rotate(90deg) translateY(-100vw) scale(3.5);
+    transform-origin: left top;
+}
 		body, html{
 			width: 200vw;
 			height: 200vh;
