@@ -13,22 +13,17 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 		var size = `
-<rect x="26.4" y="8.9" class="st0" width="15.4" height="12.3"/>
-<rect x="9.3" y="21.1" class="st0" width="15.4" height="12.3"/>
-<rect x="74.8" y="18.1" class="st0" width="15.4" height="12.3"/>
-<rect x="74.8" y="78" class="st0" width="15.4" height="12.3"/>
 <rect x="9.3" y="48.8" class="st0" width="15.4" height="12.3"/>
 <rect x="7.8" y="76.4" class="st0" width="18.4" height="13.8"/>
-<rect x="9.3" y="35" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 58.1097 24.1161)" class="st0" width="15.4" height="12.3"/>
-<rect x="74.8" y="31.9" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 120.5509 -44.4684)" class="st0" width="15.4" height="12.3"/>
-<rect x="9.3" y="62.6" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 85.7547 51.761)" class="st0" width="15.4" height="12.3"/>
-<rect x="26.4" y="21.1" class="st0" width="15.4" height="12.3"/>
-<rect x="26.4" y="48.8" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 89.0131 20.8576)" class="st0" width="15.4" height="12.3"/>
-<rect x="24.9" y="33.4" class="st0" width="18.4" height="13.8"/>
-<rect x="24.9" y="62.6" class="st0" width="18.4" height="13.8"/>
-<rect x="73.3" y="45.7" class="st0" width="18.4" height="13.8"/>
-<rect x="73.3" y="61.8" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 151.2675 -13.7518)" class="st0" width="18.4" height="13.8"/>
-<rect x="24.9" y="76.4" class="st0" width="18.4" height="`
+<rect x="10.9" y="61.1" class="st0" width="12.3" height="15.4"/>
+<rect x="49.5" y="47.3" class="st0" width="12.3" height="15.4"/>
+<rect x="46.5" y="33.4" class="st0" width="18.4" height="13.8"/>
+<rect x="46.5" y="62.6" class="st0" width="18.4" height="13.8"/>
+<rect x="46.5" y="76.4" class="st0" width="18.4" height="13.8"/>
+<rect x="30.2" y="47.3" class="st0" width="12.3" height="15.4"/>
+<rect x="27.1" y="33.4" class="st0" width="18.4" height="13.8"/>
+<rect x="27.1" y="62.6" class="st0" width="18.4" height="13.8"/>
+<rect x="27.1" y="76.4" class="st0" width="18.4" height="13.8"/>`
 					var adjustment = 4
 				for (var i = size.split('<rect').length - 1; i >= 1; i--) {
 					$('body').append('<div class="box box_'+i+' boxclass_'+(i%12)+'"></div>')
@@ -58,17 +53,16 @@
 					$('.box_'+i).css({'width': wid+'px'})
 					$('.box_'+i).css({'height': hei+'px'})
 					if( (hei<50&&wid>50)){
-						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
-						$('.box_'+i).append('<div class="tabs mobile_tabs_'+(Math.floor(Math.random()*3)+3)+'" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
+						$('.box_'+i).append('<div class="bomb bomb_'+(i%4+1)+'" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
+						$('.box_'+i).append('<div class="tabs mobile_tabs_3" style="width:'+hei+'px ; height:'+wid+'px ; transform:rotate('+90+'deg);"></div>')
 						//ismobile && wide
-					}
-					if((hei>50&&wid<50)){
-						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
-						$('.box_'+i).append('<div class="tabs mobile_tabs_'+(Math.floor(Math.random()*3)+3)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+					}else if((hei>50&&wid<50)){
+						$('.box_'+i).append('<div class="bomb bomb_'+(i%4+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+						$('.box_'+i).append('<div class="tabs mobile_tabs_3" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 						//ismobile && long
 					}else{
-						$('.box_'+i).append('<div class="bomb bomb_'+(i%9+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
-						$('.box_'+i).append('<div class="tabs desk_tabs_'+(Math.floor(Math.random()*2)+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+						$('.box_'+i).append('<div class="bomb bomb_'+(i%4+1)+'" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
+						$('.box_'+i).append('<div class="tabs desk_tabs_1" style="width:'+wid+'px ; height:'+hei+'px ;"></div>')
 					}
 					var tab_hei_unit = 2.5
 
@@ -149,10 +143,9 @@ html{background:linear-gradient(90deg, #ffbe05, black 25%)}
 			left: 0;
 			top: 0;
 		}
-		.boxclass_0{
+/*		.boxclass_1{
     		background: linear-gradient( 90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 154, 0, 1) 10%, rgba(208, 222, 33, 1) 20%, rgba(79, 220, 74, 1) 30%, rgba(63, 218, 216, 1) 40%, rgba(47, 201, 226, 1) 50%, rgba(255, 0, 0, 1) 100%);
 		}
-		.boxclass_1,
 .boxclass_2,
 .boxclass_3{
 			background:linear-gradient(#85ffea, #bbf9ff);
@@ -167,15 +160,13 @@ html{background:linear-gradient(90deg, #ffbe05, black 25%)}
 		.boxclass_9{
 			background:linear-gradient(#ffade6, #ffeb3b);
 		}
-		.boxclass_8{
-    filter: blur(1.5vh);}
+		.boxclass_8{}
 		.boxclass_10,
 		.boxclass_11{
 			background:linear-gradient(#ffff8a, #fffce0);
-		}
-.boxclass_2{
-    filter: blur(1vh);}
+		}*/
 		.tab{
+			display: none;
 			position: absolute;
 			width: 100%;
 			background-size: auto 100%;
@@ -225,8 +216,16 @@ html{background:linear-gradient(90deg, #ffbe05, black 25%)}
 		 .bomb_7{background-image:url(gifs/bomb_7.gif)}
 		 .bomb_8{background-image:url(gifs/bomb_8.gif)}
 		 .bomb_9{background-image:url(gifs/bomb_9.gif)}
+    .bgimg{    position: absolute;
+    width: 547px;
+    top: 49px;
+    left: -125px;
+    transform: rotate(-90deg);
+}
+    }
 	</style>
 </head>
 <body>
+	<img src="bgimg2.png" class="bgimg">
 </body>
 </html>
