@@ -1,0 +1,27 @@
+
+			*{margin: 0;
+				padding: 0}
+			canvas { display: block; }
+html { background: #000; }
+html,body,.bg{
+	width: 100vw;
+	height: 100%;
+	position: absolute;
+}
+.bg{
+	position: fixed;
+	background:linear-gradient(black 70%, #0fff0f);
+	pointer-events: none;
+}
+.fake_scroll{
+	height: 2000vh;
+	width: 100vw;
+}
+canvas{
+	position: fixed;
+	pointer-events: none;
+	z-index: 1000
+}
+body{
+	overflow-y: scroll;
+	overflow-x: hidden;}

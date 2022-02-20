@@ -34,14 +34,18 @@ function onLoadFinish() {
     } // empty value change queue
 
 
-    // window.firebaseSetValuesQueue.forEach(function (values) {
-    //     window.setFirebaseValues(values);
-    // });
-    // window.firebaseSetValuesQueue = [];
+    window.firebaseSetValuesQueue.forEach(function (values) {
+        window.setFirebaseValues(values);
+    });
+    window.firebaseSetValuesQueue = [];
 } // start loading firebase scripts
 
-            function firebaseValueChangeHandler(values) {
-              $('.point1').css({'transform':'rotate('+(values.scroll1-200)%360+'deg)'})
-              $('.point2').css({'transform':'rotate('+(values.scroll2-200)%360+'deg)'})
-              $('.point3').css({'transform':'rotate('+(values.scroll3-200)%360+'deg)'})
-            }
+        function onFirebaseReady() {
+    $(window).scroll(function (event) {
+        scrollpos = $(window).scrollTop();
+                        setFirebaseValues({
+                            scroll3 : scrollpos
+                        });
+    });
+
+        }

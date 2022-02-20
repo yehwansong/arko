@@ -216,7 +216,7 @@
 					}
 				}
 				console.log('1')
-				reloading()
+				// reloading()
 				function reloading(){
 					setTimeout(function(){
 				    window.location.reload();
@@ -264,7 +264,7 @@
 			top: 0;
 			background-size: cover;
 			background-position: center;
-			background:none !important
+			/*background:none !important*/
 		}
 		.tabs{
 			position: absolute;
@@ -400,10 +400,53 @@
     top: -93px;
     left: -15px;
     }
+    .point{
+    	position: absolute;
+    	z-index: 1000000;
+    	transform-origin: left;
+    }
+    .point1{
+    	left: 500px;
+    	top: 500px;
+    	width: 200px;
+    	height: 10px
+    }
+    .point2{
+    	left: 700px;
+    	top: 300px;
+    	width: 200px;
+    	height: 10px
+    }
+    .point3{
+    	left: 200px;
+    	top: 200px;
+    	width: 200px;
+    	height: 10px
+    }
+    .point_inner{
+    position: absolute;
+    right: 0;
+    background-color: #0fff0f;
+    width: 100px;
+    height: 100%;
+    filter: blur(0.4vh);
+    }
+    .box_110,.box_111,.box_112,.box_113,.box_114,.box_109,.box_108{
+    	display: none;
+    }
 	</style>
 </head>
 
 <body>
+	<div class="point point1">
+		<div class="point_inner"></div><div class="point_inner"></div><div class="point_inner"></div>
+	</div>
+	<div class="point point2">
+		<div class="point_inner"></div><div class="point_inner"></div><div class="point_inner"></div>
+	</div>
+	<div class="point point3">
+		<div class="point_inner"></div><div class="point_inner"></div><div class="point_inner"></div>
+	</div>
 	<img src="https://yehwansong.github.io/arko/bgimg.png" class="bgimg">
 	<!-- <div class="overlay_light overlay_light_1"></div>
 	<div class="overlay_light overlay_light_2"></div>

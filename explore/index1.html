@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - FBX loader</title>
+		<meta charset="utf-8">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	
+	<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
+	<script src="app1.js"></script>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+
+	<body>
+		<script>console.clear();</script>
+<script src="https://unpkg.com/three@0.87.1/build/three.js"></script>
+<script src="https://unpkg.com/three@0.87.1/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three@0.87.1/examples/js/loaders/GLTFLoader.js"></script>
+
+		<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+<script type="text/javascript">
+	
+const backgroundColor = 0x000000;
+
+/*////////////////////////////////////////*/
+
+var renderCalls = [];
+function render () {
+  requestAnimationFrame( render );
+  renderCalls.forEach((callback)=>{ callback(); });
+}
+render();
+
+/*////////////////////////////////////////*/
+
+var scene = new THREE.Scene();
+
+var camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 800 );
+camera.position.set(0,10,10);
+camera.lookAt(new THREE.Vector3(0, 0, 0))
+
+var renderer = new THREE.WebGLRenderer( { antialias: true ,alpha: true } );
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.setClearColor( 0xffffff, 0);
+
+renderer.toneMapping = THREE.LinearToneMapping;
+renderer.toneMappingExposure = Math.pow( 0.94, 5.0 );
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFShadowMap;
+
+window.addEventListener( 'resize', function () {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize( window.innerWidth, window.innerHeight );
+}, false );
+
+
+document.body.appendChild( renderer.domElement);
+
+function renderScene(){ renderer.render( scene, camera ); }
+renderCalls.push(renderScene);
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+
+// var light = new THREE.PointLight( 0xffffcc, 20, 200 );
+// light.position.set( 4, 30, -20 );
+// scene.add( light );
+
+// var light2 = new THREE.AmbientLight( 0x20202A, 20, 100 );
+// light2.position.set( 30, -10, 30 );
+// scene.add( light2 );
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+var group = new THREE.Group()
+    scene.add( group );
+var point = [500,500]
+
+
+
+		var size = `
+<rect x="0" y="134.7" class="st0" width="18" height="9"/>
+<rect x="150.9" y="95.7" class="st0" width="31.1" height="13.3"/>
+<rect x="22.4" y="112.5" class="st0" width="13.3" height="26.7"/>
+<rect x="35.8" y="85.8" class="st0" width="13.3" height="17.8"/>
+<rect x="22.4" y="94.8" class="st0" width="8.9" height="13.3"/>
+<rect x="31.4" y="41.5" class="st0" width="8.9" height="13.3"/>
+<rect x="111.3" y="1.4" class="st0" width="8.9" height="8.9"/>
+<rect x="93.5" y="1.4" class="st0" width="8.9" height="8.9"/>
+<rect x="151.3" y="5.9" class="st0" width="8.9" height="13.3"/>
+<rect x="164.7" y="5.9" class="st0" width="16.3" height="10.9"/>
+<rect x="209.1" y="14.8" class="st0" width="15.3" height="8.9"/>
+<rect x="275.8" y="1.4" class="st1" width="25.7" height="18.2"/>
+<rect x="182.4" y="32.6" class="st0" width="28.7" height="22.8"/>
+<rect x="244.7" y="19.2" class="st1" width="26.7" height="17.8"/>
+<rect x="249.1" y="41.4" class="st1" width="16.3" height="24.8"/>
+<rect x="169.1" y="54.8" class="st0" width="15.3" height="10.9"/>
+<rect x="186.9" y="54.8" class="st0" width="13.3" height="17.8"/>
+<rect x="26.9" y="23.7" class="st0" width="13.3" height="13.3"/>
+<rect x="18" y="41.4" class="st0" width="8.9" height="17.8"/>
+<rect x="22.5" y="1.4" class="st0" width="8.9" height="17.8"/>
+<rect x="275.8" y="24.8" class="st0" width="13.3" height="13.3"/>
+<rect x="2.6" y="21.3" class="st0" width="13.3" height="13.3"/>
+<rect x="275.8" y="42.6" class="st0" width="17.8" height="8.9"/>
+<rect x="84.6" y="14.8" class="st0" width="22.2" height="8.9"/>
+<rect x="91.3" y="50.4" class="st0" width="17.8" height="8.9"/>
+<rect x="53.6" y="90.4" class="st0" width="22.2" height="13.3"/>
+<rect x="80.2" y="90.4" class="st0" width="13.3" height="13.3"/>
+<rect x="53.6" y="45.8" class="st0" width="17.8" height="17.8"/>
+<rect x="93.5" y="28" class="st0" width="17.8" height="17.8"/>
+<rect x="93.5" y="61.5" class="st0" width="22.2" height="13.3"/>
+<rect x="115.8" y="32.6" class="st0" width="13.3" height="22.2"/>
+<rect x="146.9" y="28.1" class="st0" width="8.9" height="22.2"/>
+<rect x="298" y="42.6" class="st0" width="13.3" height="8.9"/>
+<rect x="230.1" y="2.2" class="st0" width="8.9" height="13.3"/>
+<rect x="2.3" y="5" class="st0" width="13.3" height="13.3"/>
+<rect x="173.2" y="77.7" class="st0" width="8.9" height="13.4"/>
+<rect x="186.5" y="82.3" class="st0" width="8.9" height="13.3"/>
+<rect x="202" y="80.2" class="st0" width="8.9" height="17.7"/>
+<rect x="98" y="99.2" class="st0" width="20.7" height="11.9"/>
+<rect x="124.7" y="97" class="st0" width="17.7" height="8.9"/>
+<rect x="133.5" y="77.1" class="st0" width="13.3" height="17.7"/>
+<rect x="276.1" y="101.5" class="st0" width="13.3" height="13.3"/>
+<rect x="146.9" y="117.1" class="st0" width="22.2" height="13.3"/>
+<rect x="171.4" y="125.8" class="st0" width="13.3" height="8.9"/>
+<rect x="217" y="82.9" class="st0" width="13.3" height="13.3"/>
+<rect x="226.9" y="119.2" class="st0" width="26.6" height="17.8"/>
+<rect x="253.6" y="126" class="st0" width="24.2" height="13.3"/>
+<rect x="218" y="143.7" class="st0" width="26.7" height="13.3"/>
+<rect x="244.7" y="93.9" class="st0" width="16.3" height="20.8"/>
+<rect x="226.9" y="99" class="st0" width="15.3" height="15.7"/>
+<rect x="155.8" y="134.8" class="st0" width="22.2" height="13.3"/>
+<rect x="164.7" y="148" class="st0" width="17.8" height="13.4"/>
+<rect x="282.7" y="117" class="st0" width="13.3" height="22.2"/>
+<rect x="300.5" y="105.9" class="st0" width="26.7" height="13.3"/>
+<rect x="106.9" y="77" class="st0" width="22.2" height="13.3"/>
+<rect x="133.4" y="132.6" class="st0" width="17.7" height="8.9"/>
+<rect x="111.3" y="143.7" class="st0" width="22.2" height="17.8"/>
+<rect x="118" y="108.1" class="st0" width="22.2" height="17.8"/>
+<rect x="186.5" y="100" class="st0" width="13.3" height="17.8"/>
+<rect x="204.3" y="104.5" class="st0" width="8.9" height="8.9"/>
+<rect x="241.9" y="1.5" class="st0" width="8.9" height="8.9"/>
+<rect x="109" y="132.6" class="st0" width="8.9" height="8.9"/>
+<rect x="106.8" y="121.4" class="st0" width="8.9" height="8.9"/>
+<rect x="81.8" y="107" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -55.4008 93.5634)" class="st0" width="6.9" height="13.4"/>
+<rect x="91.2" y="116.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -59.3721 103.0341)" class="st0" width="6.9" height="13.4"/>
+<rect x="136.2" y="52.8" transform="matrix(0.7071 -0.7071 0.7071 0.7071 2.0431 117.5033)" class="st0" width="13.4" height="6.9"/>
+<rect x="126.7" y="62.4" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -7.4617 113.6146)" class="st0" width="13.4" height="6.9"/>
+<rect x="155.1" y="33.9" transform="matrix(0.7071 -0.7071 0.7071 0.7071 20.9527 125.3221)" class="st0" width="13.4" height="6.9"/>
+<rect x="145.6" y="43.4" transform="matrix(0.7071 -0.7071 0.7071 0.7071 11.4479 121.4334)" class="st0" width="13.4" height="6.9"/>
+<rect x="174" y="15.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 39.833 133.2115)" class="st0" width="13.4" height="6.9"/>
+<rect x="164.6" y="24.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 30.4282 129.2814)" class="st0" width="13.4" height="6.9"/>
+<rect x="183.5" y="5.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 49.3379 137.1002)" class="st0" width="13.4" height="6.9"/>
+<rect x="143.1" y="59.9" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -0.8947 124.4649)" class="st0" width="13.4" height="6.9"/>
+<rect x="133.6" y="69.3" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -10.2995 120.5349)" class="st0" width="13.4" height="6.9"/>
+<rect x="162.1" y="40.9" transform="matrix(0.7071 -0.7071 0.7071 0.7071 18.0857 132.313)" class="st0" width="13.4" height="6.9"/>
+<rect x="152.5" y="50.3" transform="matrix(0.7071 -0.7071 0.7071 0.7071 8.6102 128.3536)" class="st0" width="13.4" height="6.9"/>
+<rect x="181" y="22" transform="matrix(0.7071 -0.7071 0.7071 0.7071 36.9953 140.1318)" class="st0" width="13.4" height="6.9"/>
+<rect x="171.4" y="31.4" transform="matrix(0.7071 -0.7071 0.7071 0.7071 27.5198 136.1724)" class="st0" width="13.4" height="6.9"/>
+<rect x="190.4" y="12.6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 46.4001 144.0618)" class="st0" width="13.4" height="6.9"/>
+<rect x="53.4" y="135.3" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -83.7712 81.7801)" class="st0" width="6.9" height="13.4"/>
+<rect x="62.9" y="144.8" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -87.6718 91.2801)" class="st0" width="6.9" height="13.4"/>
+<rect x="59.8" y="110.3" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -60.9504 80.2976)" class="st0" width="13.4" height="6.9"/>
+<rect x="50.2" y="119.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -70.4259 76.3382)" class="st0" width="13.4" height="6.9"/>
+<rect x="88" y="138.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -72.6294 108.499)" class="st0" width="13.4" height="6.9"/>
+<rect x="127.3" y="1.5" class="st0" width="13.4" height="6.9"/>
+<rect x="116.1" y="6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 29.247 89.6008)" class="st0" width="13.4" height="6.9"/>
+<rect x="114.8" y="13.9" class="st0" width="6.9" height="13.4"/>
+<rect x="119.4" y="25.2" transform="matrix(0.7071 -0.7071 0.7071 0.7071 13.4313 96.1765)" class="st0" width="6.9" height="13.4"/>
+<rect x="127.2" y="33" class="st0" width="13.4" height="6.9"/>
+<rect x="138.5" y="28.4" transform="matrix(0.7071 -0.7071 0.7071 0.7071 20.0175 111.967)" class="st0" width="13.4" height="6.9"/>
+<rect x="146.3" y="14" class="st0" width="6.9" height="13.4"/>
+<rect x="141.7" y="2.8" transform="matrix(0.7071 -0.7071 0.7071 0.7071 35.7974 105.4062)" class="st0" width="6.9" height="13.4"/>
+<rect x="77.9" y="49.6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -15.9703 73.9934)" class="st0" width="6.9" height="13.4"/>
+<rect x="220.2" y="31.2" class="st0" width="13.4" height="6.9"/>
+<rect x="209.1" y="35.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 35.4764 164.0422)" class="st0" width="13.4" height="6.9"/>
+<rect x="207.6" y="43.7" class="st0" width="6.9" height="13.4"/>
+<rect x="212.2" y="54.9" transform="matrix(0.7071 -0.7071 0.7071 0.7071 19.6505 170.5464)" class="st0" width="6.9" height="13.4"/>
+<rect x="220.2" y="62.7" class="st0" width="13.4" height="6.9"/>
+<rect x="231.3" y="58.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 26.1652 186.3469)" class="st0" width="13.4" height="6.9"/>
+<rect x="239.2" y="43.7" class="st0" width="6.9" height="13.4"/>
+<rect x="234.6" y="32.6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 41.9552 179.8575)" class="st0" width="6.9" height="13.4"/>
+<rect x="300.2" y="62.3" class="st0" width="13.4" height="6.9"/>
+<rect x="289" y="66.8" transform="matrix(0.7071 -0.7071 0.7071 0.7071 36.9299 229.6909)" class="st0" width="13.4" height="6.9"/>
+<rect x="287.6" y="74.7" class="st0" width="6.9" height="13.4"/>
+<rect x="292.3" y="85.9" transform="matrix(0.7071 -0.7071 0.7071 0.7071 21.1218 236.2354)" class="st0" width="6.9" height="13.4"/>
+<rect x="300.2" y="93.7" class="st0" width="13.4" height="6.9"/>
+<rect x="311.4" y="89.2" transform="matrix(0.7071 -0.7071 0.7071 0.7071 27.6768 252.0183)" class="st0" width="13.4" height="6.9"/>
+<rect x="319.2" y="74.8" class="st0" width="6.9" height="13.4"/>
+<rect x="314.6" y="63.6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 43.4492 245.4886)" class="st0" width="6.9" height="13.4"/>
+<rect x="78.4" y="147.9" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -82.1049 104.5396)" class="st0" width="13.4" height="6.9"/>
+<rect x="259.5" y="61" transform="matrix(0.7071 -0.7071 0.7071 0.7071 29.1819 205.7702)" class="st0" width="6.9" height="13.4"/>
+<rect x="240.7" y="79.8" transform="matrix(0.7071 -0.7071 0.7071 0.7071 10.3821 197.9807)" class="st0" width="6.9" height="13.4"/>
+<rect x="237.5" y="64.2" transform="matrix(0.7071 -0.7071 0.7071 0.7071 23.6992 192.4504)" class="st0" width="13.4" height="6.9"/>
+<rect x="256.3" y="83" transform="matrix(0.7071 -0.7071 0.7071 0.7071 15.9157 211.2539)" class="st0" width="13.4" height="6.9"/>`
+					var adjustment = 4
+					var pos_array = Array( size.split('<rect').length)
+					var cube_array = Array()
+					var cube_pos_array = Array()
+
+
+
+
+    const loader = new THREE.TextureLoader();
+        const texture = loader.load( "tex.png" );
+			texture.wrapS = THREE.RepeatWrapping;
+			texture.wrapT = THREE.RepeatWrapping;
+			texture.repeat.set(1, 1);
+
+
+
+				for (var i = size.split('<rect').length-1; i >=0; i--) {
+					var wid = parseInt(size.split('width="')[i].split('"')[0])*adjustment*1.2
+					var hei = parseInt(size.split('height="')[i].split('"')[0])*adjustment*1.2
+					$('.box_'+i).css({'width': wid+'px'})
+					$('.box_'+i).css({'height': hei+'px'})
+					pos_array[i] = [parseInt(size.split('x="')[i].split('"')[0])*adjustment+wid/2 , parseInt(size.split('y="')[i].split('"')[0])*adjustment+hei/2,wid,hei]
+
+					var max = 200
+					var min = max-100
+					if(i==0){
+						console.log(pos_array)
+						for (var k = pos_array.length - 1; k >= 0; k--) {
+							
+							
+							if(get_dis(point[0],point[1],pos_array[k][0],pos_array[k][1])<max && get_dis(point[0],point[1],pos_array[k][0],pos_array[k][1])>min){
+								const geometry = new THREE.BoxGeometry( pos_array[k][2]/10, 1, pos_array[k][3]/10 );
+								// const geometry = new THREE.BoxGeometry(1,1,1)
+								const material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide, color:0xffffff} )
+								const cube = new THREE.Mesh( geometry, material );
+								cube.position.z =  -1*(get_angle(point[0],point[1],pos_array[k][0],pos_array[k][1])+3600)%360
+								// cube.position.z = -100
+								cube.position.x =  get_dis(point[0],point[1],pos_array[k][0],pos_array[k][1])/10-(min/10)-(max-min)/20
+								scene.add( cube );
+								cube_array.push( cube )
+								cube_pos_array.push( -1*(get_angle(point[0],point[1],pos_array[k][0],pos_array[k][1])+3600)%360 )
+							}
+						}
+					}
+				}
+
+
+
+function get_dis(x1,y1,x2,y2){
+	var a = x1 - x2;
+	var b = y1 - y2;
+	return Math.sqrt( a*a + b*b );
+}
+
+function get_angle(x1,y1,x2,y2){
+	return Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+}
+    $(window).scroll(function (event) {
+        scrollpos = $(window).scrollTop();
+        for (var i = cube_array.length - 1; i >= 0; i--) {
+        	cube_array[i].position.z = ((cube_pos_array[i]+scrollpos))%360-200
+        }
+    });
+
+
+</script>
+<div class="bg"></div>
+	<div class="fake_scroll">.</div>
+	</body>
+</html>
