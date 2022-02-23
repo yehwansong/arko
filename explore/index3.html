@@ -8,7 +8,7 @@
 	<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-analytics.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
-	<script src="app3.js"></script>
+	<!-- <script src="app3.js"></script> -->
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="main.css">
 	</head>
@@ -22,6 +22,49 @@
 		<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
 
 <script type="text/javascript">
+
+$(document).ready(function(){
+    onLoadFinish()
+})
+function onLoadFinish() {
+    console.log('onLoadFinish');
+  	var firebaseConfig = {
+  	apiKey: "AIzaSyA0pznM4nqNwUDmbpynb1OtxTUS6LUzeJk",
+  	authDomain: "arko-a6329.firebaseapp.com",
+  	projectId: "arko-a6329",
+  	storageBucket: "arko-a6329.appspot.com",
+  	messagingSenderId: "31247987011",
+  	appId: "1:31247987011:web:2afad3a69964161547fff6",
+  	measurementId: "G-F94XZQKZVB",
+    databaseURL: "https://arko-a6329-default-rtdb.firebaseio.com/",
+  };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    window.setFirebaseValues = function (values) {
+        firebase.database().ref('values').update(values);
+    };
+
+    firebase.database().ref('values').on('value', function (snapshot) {
+        if (typeof window.firebaseValueChangeHandler !== 'function') {
+            return;
+        }
+        window.firebaseValueChangeHandler(snapshot.val());
+    }); // ready to go
+
+    if (typeof window.onFirebaseReady === 'function') {
+        window.onFirebaseReady();
+    } // empty value change queue
+
+
+    window.firebaseSetValuesQueue.forEach(function (values) {
+        window.setFirebaseValues(values);
+    });
+    window.firebaseSetValuesQueue = [];
+} // start loading firebase scripts
+
+
+
 	
 const backgroundColor = 0x000000;
 
@@ -211,6 +254,10 @@ var point = [200,200]
 			texture.wrapT = THREE.RepeatWrapping;
 			texture.repeat.set(1, 1);
 
+	const hovered_material = new THREE.MeshBasicMaterial( {side: THREE.DoubleSide, color:0x0fff0f} )
+	const original_material = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide, color:0xffffff} )
+
+
 
 
 				for (var i = size.split('<rect').length-1; i >=0; i--) {
@@ -236,6 +283,7 @@ var point = [200,200]
 								// cube.position.z = -100
 								cube.position.x =  get_dis(point[0],point[1],pos_array[k][0],pos_array[k][1])/10-(min/10)-(max-min)/20
 								scene.add( cube );
+								cube.name = 'cube_'+k
 								cube_array.push( cube )
 								cube_pos_array.push( -1*(get_angle(point[0],point[1],pos_array[k][0],pos_array[k][1])+3600)%360 )
 							}
@@ -254,12 +302,30 @@ function get_dis(x1,y1,x2,y2){
 function get_angle(x1,y1,x2,y2){
 	return Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
 }
+
+function onFirebaseReady() {
     $(window).scroll(function (event) {
-        scrollpos = $(window).scrollTop();
+        scrollpos = $(window).scrollTop()/2;
         for (var i = cube_array.length - 1; i >= 0; i--) {
         	cube_array[i].position.z = ((cube_pos_array[i]+scrollpos))%360-200
+        	if((((cube_pos_array[i]+scrollpos))%360-200)>0&&(((cube_pos_array[i]+scrollpos))%360-200)<10){
+        		cube_array[i].material = hovered_material
+        		console.log(cube_array[i])
+        		
+                        setFirebaseValues({
+                            scroll3 : cube_array[i].name.split('cube_')[1]
+                        });
+        	}else{
+        		cube_array[i].material = original_material
+        	}
         }
+
+        scrollpos = $(window).scrollTop();
     });
+
+}
+
+
 
 
 </script>

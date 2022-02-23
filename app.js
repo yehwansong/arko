@@ -41,6 +41,12 @@ function onLoadFinish() {
 } // start loading firebase scripts
 
             function firebaseValueChangeHandler(values) {
+              $('.hovered1').removeClass('hovered1')
+              $('.box_'+values.scroll1).find('.bomb').addClass('hovered1')
+              $('.hovered2').removeClass('hovered2')
+              $('.box_'+values.scroll2).find('.bomb').addClass('hovered2')
+              $('.hovered3').removeClass('hovered3')
+              $('.box_'+values.scroll3).find('.bomb').addClass('hovered3')
               $('.point1').css({'transform':'rotate('+(values.scroll1-200)%360+'deg)'})
               $('.point2').css({'transform':'rotate('+(values.scroll2-200)%360+'deg)'})
               $('.point3').css({'transform':'rotate('+(values.scroll3-200)%360+'deg)'})

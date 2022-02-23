@@ -48,10 +48,4 @@ function onLoadFinish() {
                         });
     });
 
-        }
-            function firebaseValueChangeHandler(values) {
-                     $('.follower').css({
-                         top: values.posy - 50,
-                         left: values.posx - 50
-                     });
-            }
+}
