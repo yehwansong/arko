@@ -26,7 +26,7 @@
 <rect x="29.4" y="76.4" class="st0" width="13.8" height="18.4"/>`
 					var adjustment = 4
 				for (var i = size.split('<rect').length - 1; i >= 1; i--) {
-					$('body').append('<div class="box box_'+i+' boxclass_'+(i%12)+'"></div>')
+					$('.wrapper').append('<div class="box box_'+i+' boxclass_'+(i%12)+'"></div>')
 					$('.box_'+i).css({'left':parseInt(size.split('x="')[i].split('"')[0])*adjustment+'px'})
 					$('.box_'+i).css({'top':parseInt(size.split('y="')[i].split('"')[0])*adjustment+'px'})
 					      if(size.split('<rect')[i].split('transform="matrix(0.7071 0.7071 -0.7071 0.7071').length>1){
@@ -116,10 +116,8 @@
 		15*/
 html{background:linear-gradient(90deg, #73ffec, black 25%)}
 		body{
-    transform: rotate(90deg) translateX(15vw) translateY(-82vw) scale(3.5);
-    transform-origin: left top;
 }
-		body, html{
+		body{
 			width: 200vw;
 			height: 200vh;
 			position: absolute;
@@ -222,10 +220,20 @@ html{background:linear-gradient(90deg, #73ffec, black 25%)}
     left: -125px;
     transform: rotate(-90deg);
 }
-    }
+.wrapper{
+background:linear-gradient(0deg, #73ffec, black 25%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transform: rotate(90deg) translateX(15vw) translateY(-82vw) scale(3.5) translateY(-131.4px);
+    transform-origin: left top;
+}
 	</style>
 </head>
 <body>
-	<img src="https://yehwansong.github.io/arko/bgimg2.png" class="bgimg">
+	<div class="wrapper">
+	<img src="https://yehwansong.github.io/arko/bgimg2.png" class="bgimg"></div>
 </body>
 </html>
