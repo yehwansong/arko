@@ -114,17 +114,14 @@
 		3
 		8
 		15*/
-html{background:linear-gradient(90deg, #73ffec, black 25%)}
-		body{
+		body,html{
+			width: 100%;
+			height:100%;
 }
 		body{
-			width: 200vw;
-			height: 200vh;
-			position: absolute;
-			left: 0;
-			top: 0;
 			/*background-color: black;*/
 			overflow: hidden;
+			background:linear-gradient(90deg, #73ffec, black 25%)
 		}
 		.box{
 			position: absolute;
@@ -221,7 +218,7 @@ html{background:linear-gradient(90deg, #73ffec, black 25%)}
     transform: rotate(-90deg);
 }
 .wrapper{
-background:linear-gradient(0deg, #73ffec, black 25%);
+/*background:linear-gradient(0deg, #73ffec, black 25%);*/
     position: absolute;
     width: 100%;
     height: 100%;
@@ -229,6 +226,11 @@ background:linear-gradient(0deg, #73ffec, black 25%);
     top: 0;
     transform: rotate(90deg) translateX(15vw) translateY(-82vw) scale(3.5) translateY(-131.4px);
     transform-origin: left top;
+    width: 200vw;
+    height: 200vh;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 	</style>
 </head>
