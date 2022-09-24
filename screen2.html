@@ -144,7 +144,7 @@
 					var adjustment = 4
 				for (var i = size.split('<rect').length-1; i >=0; i--) {
 					$('body').append('<div class="box box_'+i+' boxclass_'+(i%12)+'"></div>')
-					$('.box_'+i).css({'left':parseInt(size.split('x="')[i].split('"')[0])*adjustment+'px'})
+					$('.box_'+i).css({'left':parseInt(size.split('x="')[i].split('"')[0])*adjustment-82+'px'})
 					$('.box_'+i).css({'top':parseInt(size.split('y="')[i].split('"')[0])*adjustment+'px'})
 					      if(size.split('<rect')[i].split('transform="matrix(0.7071 0.7071 -0.7071 0.7071').length>1){
 						$('.box_'+i).css({'transform':'rotate(45deg)'})
@@ -398,7 +398,7 @@
     position: absolute;
     width: 1446px;
     top: -93px;
-    left: -15px;
+    left: calc(-15px - 82px);
     }
     .point{
     	position: absolute;
